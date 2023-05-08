@@ -1,6 +1,10 @@
 import { headers } from 'next/headers';
 import style from './home.module.css';
+import type { Metadata } from 'next';
 const ipHeader = process.env['IP_HEADER'] || 'X-Forwarded-For';
+export const metadata: Metadata = {
+	title: 'Vomit IP'
+};
 
 export default function Home() {
 	let ip = headers().get(ipHeader) || 'unknow';
