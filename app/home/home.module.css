@@ -1,4 +1,4 @@
-#homeText {
+.homeText {
 	background: radial-gradient(circle, rgba(219, 29, 112, 1) 0%, rgba(62, 128, 207, 1) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
@@ -18,12 +18,12 @@
 	}
 }
 
-.clipboardAnimation {
-	animation: pop 0.3s linear 1;
+.clipboardHidden {
+	display: none;
 }
 
-.clipboardAnimationHide {
-	animation: popOut 0.3s linear;
+.clipboardAnimation {
+	animation: pop 2.3s linear;
 	animation-fill-mode: forwards;
 }
 
@@ -31,12 +31,15 @@
 	0% {
 		transform: scale(0.7);
 	}
-	50% {
+	7% {
 		transform: scale(1.2);
 	}
-}
-
-@keyframes popOut {
+	13% {
+		transform: scale(1);
+	}
+	84% {
+		transform: scale(1);
+	}
 	100% {
 		transform: scale(0);
 	}

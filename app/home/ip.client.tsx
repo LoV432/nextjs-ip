@@ -3,30 +3,23 @@ import style from './home.module.css';
 import { useState } from 'react';
 
 export default function Ip({ ip }: { ip: string }) {
-	const [clipboardVisiblity, setClipboardVisiblity] = useState(false);
-	const [clipboardAnimation, setClipboardAnimation] = useState('');
+	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
 
 	const isipv6 = ip.includes(':') ? true : false;
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
-		setClipboardVisiblity(true);
+		if (clipboardAnimation === style.clipboardAnimation) return; // Dont re-run animation if its alrdy running
 		setClipboardAnimation(style.clipboardAnimation);
 		setTimeout(() => {
-			setClipboardAnimation(style.clipboardAnimationHide);
-			setTimeout(() => {
-				setClipboardVisiblity(false);
-				setClipboardAnimation('');
-			}, 350);
-		}, 2000);
+			setClipboardAnimation(style.clipboardHidden);
+		}, 2350);
 	}
 	return (
 		<>
-			<h1 onClick={copyIp} id={style.homeText} className={`${isipv6 ? 'text-justify text-[7vw]' : 'text-justify text-[11vw] md:text-[9vw]'} font-bold text-white p-2 hover:cursor-pointer`}>
+			<h1 onClick={copyIp} className={`${isipv6 ? 'text-[7vw]' : 'text-[11vw] md:text-[9vw]'} ${style.homeText} text-justify font-bold text-white p-2 hover:cursor-pointer select-none`}>
 				{ip}
 			</h1>
-			<div id="clipboardText" className={`fixed bottom-14 margin-auto text-right text-md bg-rose-900 text-black font-semibold rounded-lg p-3 ${clipboardAnimation} ${clipboardVisiblity ? '' : 'hidden'}`}>
-				Copied to clipboard!
-			</div>
+			<div className={`fixed bottom-14 margin-auto text-right text-md bg-rose-900 text-black font-semibold rounded-lg p-3 ${clipboardAnimation}`}>Copied to clipboard!</div>
 		</>
 	);
 }
