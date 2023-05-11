@@ -9,6 +9,13 @@
 	-webkit-text-fill-color: rgb(24 24 27);
 }
 
+.clipboard {
+	--clipboard-animation: textShine 25s linear infinite alternate;
+	background: radial-gradient(circle, rgba(219, 29, 112, 1) 0%, rgba(62, 128, 207, 1) 100%);
+	background-size: 500% 500%;
+	animation: var(--clipboard-animation);
+}
+
 @keyframes textShine {
 	0% {
 		background-position: -250% 50%;
@@ -19,11 +26,11 @@
 }
 
 .clipboardHidden {
-	display: none;
+	opacity: 0;
 }
 
 .clipboardAnimation {
-	animation: pop 2.3s linear;
+	animation: pop 2.3s linear, var(--clipboard-animation);
 	animation-fill-mode: forwards;
 }
 

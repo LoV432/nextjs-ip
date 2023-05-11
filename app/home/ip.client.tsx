@@ -19,7 +19,7 @@ export default function Ip({ ip }: { ip: string }) {
 			<h1 onClick={copyIp} className={`${isipv6 ? 'text-[7vw]' : 'text-[11vw] md:text-[9vw]'} ${style.homeText} text-justify font-bold text-white p-2 hover:cursor-pointer select-none`}>
 				{ip}
 			</h1>
-			<div className={`fixed bottom-14 margin-auto text-right text-md bg-rose-900 text-black font-semibold rounded-lg p-3 ${clipboardAnimation}`}>Copied to clipboard!</div>
+			<div className={`${style.clipboard} fixed bottom-14 margin-auto text-lg text-black font-semibold rounded-lg p-3 ${clipboardAnimation}`}>Copied to clipboard!</div>
 		</>
 	);
 }
