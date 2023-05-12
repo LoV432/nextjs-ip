@@ -10,7 +10,14 @@ const nextConfig = {
                         key: 'cache-control',
                         value: 'no-store',
                     }
-                ]
+                ],
+                source: '/',
+                headers: [
+                    {
+                        key: 'Refresh',
+                        value: '0; url=/home'
+                    }
+                ],
             },
         ];
     },
