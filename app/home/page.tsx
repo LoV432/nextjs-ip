@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	let ip = headers().get(ipHeader) || 'unknown';
 	return (
-		<div className="grid w-screen h-screen place-items-center bg-zinc-900">
+		<div className="grid h-screen w-screen place-items-center bg-zinc-900">
 			<Ip ip={ip} />
 		</div>
 	);

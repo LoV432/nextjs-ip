@@ -16,10 +16,10 @@ export default function Ip({ ip }: { ip: string }) {
 	}
 	return (
 		<>
-			<h1 onClick={copyIp} className={`${isipv6 ? 'text-[7vw]' : 'text-[11vw] md:text-[9vw]'} ${style.homeText} text-justify font-bold text-white p-2 hover:cursor-pointer select-none`}>
+			<h1 onClick={copyIp} className={`${isipv6 ? 'text-[7vw]' : 'text-[11vw] md:text-[9vw]'} ${style.homeText} select-none p-2 text-justify font-bold text-white hover:cursor-pointer`}>
 				{ip}
 			</h1>
-			<div className={`${style.clipboard} fixed bottom-14 margin-auto text-lg text-black font-semibold rounded-lg p-3 ${clipboardAnimation}`}>Copied to clipboard!</div>
+			<div className={`${style.clipboard} margin-auto fixed bottom-14 rounded-lg p-3 text-lg font-semibold text-black ${clipboardAnimation}`}>Copied to clipboard!</div>
 		</>
 	);
 }
