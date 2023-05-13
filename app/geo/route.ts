@@ -1,10 +1,22 @@
 import { NextResponse, type NextRequest } from 'next/server';
+const continentHeader = process.env['CONTINENT_HEADER'] || '';
+const countryHeader = process.env['COUNTRY_HEADER'] || '';
+const stateHeader = process.env['STATE_HEADER'] || '';
+const cityHeader = process.env['CITY_HEADER'] || '';
+const longitudeHeader = process.env['LATITUDE_HEADER'] || '';
+const latitudeHeader = process.env['LONGITUDE_HEADER'] || '';
 
 export async function GET(req: NextRequest) {
-	const city = req.headers.get('cf-ipcity') || 'Unknown';
-	const country = req.headers.get('cf-ipcountry') || 'Unknown';
-	const continent = req.headers.get('cf-continent') || 'Unknown';
-	const longitude = req.headers.get('cf-iplongitude') || 'Unknown';
-	const latitude = req.headers.get('cf-iplatitude') || 'Unknown';
-	return NextResponse.json({ city, country, continent, longitude, latitude });
+	const continent = getValueFromHeader(continentHeader, req);
+	const country = getValueFromHeader(countryHeader, req);
+	const state = getValueFromHeader(stateHeader, req);
+	const city = getValueFromHeader(cityHeader, req);
+	const longitude = getValueFromHeader(longitudeHeader, req);
+	const latitude = getValueFromHeader(latitudeHeader, req);
+	return NextResponse.json({ continent, country, state, city, longitude, latitude });
+}
+
+function getValueFromHeader(header: string, req: NextRequest) {
+	if (header !== '') return req.headers.get(header) || 'Unknown';
+	return 'Unknown';
 }
