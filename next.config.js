@@ -24,6 +24,15 @@ const nextConfig = {
 						value: 'no-store'
 					}
 				]
+			},
+			{
+				source: '/ip',
+				headers: [
+					{
+						key: 'cache-control',
+						value: 'no-store'
+					}
+				]
 			}
 		];
 	}
