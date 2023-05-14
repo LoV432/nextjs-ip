@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+export const runtime = 'edge';
 const continentHeader = process.env['CONTINENT_HEADER'] || '';
 const countryHeader = process.env['COUNTRY_HEADER'] || '';
 const stateHeader = process.env['STATE_HEADER'] || '';

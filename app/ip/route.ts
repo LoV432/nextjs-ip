@@ -1,4 +1,4 @@
-import { type NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
 export const runtime = 'edge';
 const ipHeader = process.env['IP_HEADER'] || 'X-Forwarded-For';
 
