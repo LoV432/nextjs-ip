@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function Ip() {
 	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
-	const [ip, setIp] = useState('');
+	const [ip, setIp] = useState('Detecting...');
 	const [isipv6, setIsipv6] = useState(false);
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
@@ -14,20 +14,15 @@ export default function Ip() {
 			setClipboardAnimation(style.clipboardHidden);
 		}, 2350);
 	}
-	function randomIp() {
-		return `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-	}
+
 	useEffect(() => {
-		const interval = setInterval(() => setIp(randomIp()), 100); // Keep setting random IPs until we get real ip
 		(async () => {
 			const requestIp = await fetch('/');
-			clearInterval(interval); // We have the real IP here so stop interval
-			await new Promise((resolve) => setTimeout(resolve, 100)); // Makes the switch to real IP more consistent-ish
 			const realIp = await requestIp.text();
 			setIsipv6(realIp.includes(':') ? true : false);
 			setIp(realIp);
 		})();
-		return () => clearInterval(interval);
+		return () => {};
 	}, []);
 	return (
 		<>
