@@ -16,10 +16,6 @@ const nextConfig = {
 				source: '/',
 				headers: [
 					{
-						key: 'Refresh',
-						value: '0; url=/home'
-					},
-					{
 						key: 'cache-control',
 						value: 'no-store'
 					}
