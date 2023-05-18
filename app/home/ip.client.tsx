@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function Ip() {
 	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
-	const [ip, setIp] = useState('Detecting...');
+	const [ip, setIp] = useState('');
 	const [isipv6, setIsipv6] = useState(false);
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
@@ -16,6 +16,15 @@ export default function Ip() {
 	}
 
 	useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const ipInSearchParams = urlParams.get('ip');
+		if (ipInSearchParams !== null) {
+			setIp(ipInSearchParams);
+			setIsipv6(ipInSearchParams.includes(':') ? true : false);
+		} else {
+			setIp('Detecting...');
+		}
+
 		(async () => {
 			const requestIp = await fetch('/');
 			const realIp = await requestIp.text();
