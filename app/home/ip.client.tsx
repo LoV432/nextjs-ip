@@ -21,6 +21,7 @@ export default function Ip() {
 		if (ipInSearchParams !== null) {
 			setIp(ipInSearchParams);
 			setIsipv6(ipInSearchParams.includes(':') ? true : false);
+			window.history.pushState({}, '', '/home'); // Remove ip from URL
 		} else {
 			setIp('Detecting...');
 		}
