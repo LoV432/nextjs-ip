@@ -5,8 +5,8 @@ const continentHeader = process.env['CONTINENT_HEADER'] || '';
 const countryHeader = process.env['COUNTRY_HEADER'] || '';
 const stateHeader = process.env['STATE_HEADER'] || '';
 const cityHeader = process.env['CITY_HEADER'] || '';
-const longitudeHeader = process.env['LATITUDE_HEADER'] || '';
-const latitudeHeader = process.env['LONGITUDE_HEADER'] || '';
+const longitudeHeader = process.env['LONGITUDE_HEADER'] || '';
+const latitudeHeader = process.env['LATITUDE_HEADER'] || '';
 
 export async function GET(req: NextRequest) {
 	const ip = getValueFromHeader(ipHeader, req);
