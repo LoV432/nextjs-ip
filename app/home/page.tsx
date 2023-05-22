@@ -1,4 +1,6 @@
 import Ip from './ip.client';
+import Map from './map.client';
+import './home.css';
 import type { Metadata } from 'next';
 export const metadata: Metadata = {
 	title: 'Vomit IP'
@@ -6,8 +8,13 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<div className="grid h-screen w-screen place-items-center bg-zinc-900">
-			<Ip />
-		</div>
+		<>
+			<section className="grid h-screen w-full snap-center place-items-center bg-zinc-900">
+				<Ip />
+			</section>
+			<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900">
+				<Map />
+			</section>
+		</>
 	);
 }

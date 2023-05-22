@@ -1,0 +1,5 @@
+html {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	@apply snap-y snap-mandatory;
+}
