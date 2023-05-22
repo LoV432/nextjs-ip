@@ -1,6 +1,7 @@
 'use client';
 import style from './home.module.css';
 import { useEffect, useState } from 'react';
+import { GeoResponse } from '../geo/geo.d';
 
 export default function Ip() {
 	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
@@ -27,10 +28,10 @@ export default function Ip() {
 		}
 
 		(async () => {
-			const requestIp = await fetch('/');
-			const realIp = await requestIp.text();
-			setIsipv6(realIp.includes(':') ? true : false);
-			setIp(realIp);
+			const requestIp = await fetch('/geo');
+			const realIp: GeoResponse = await requestIp.json();
+			setIsipv6(realIp.ip.includes(':') ? true : false);
+			setIp(realIp.ip);
 		})();
 		return () => {};
 	}, []);
