@@ -1,8 +1,12 @@
 'use client';
-
+import style from './home.module.css';
 export default function Map({ coords }: { coords: { longitude: number; latitude: number } }) {
 	const mapLink = getMapLink(coords.longitude, coords.latitude);
-	return <iframe src={mapLink} className="aspect-square w-80 md:w-1/3 lg:w-1/4" />;
+	return (
+		<div className={`${style.mapBorder} aspect-square w-80 rounded-xl p-[1px] md:w-1/3`}>
+			<iframe src={mapLink} className="h-full w-full rounded-xl border-hidden grayscale invert filter" />
+		</div>
+	);
 }
 
 function getMapLink(longitude: number, latitude: number) {

@@ -28,6 +28,11 @@
 	-webkit-text-stroke-color: transparent;
 	-webkit-text-fill-color: rgb(24 24 27);
 }
+.mapBorder {
+	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
+	background-size: 300%;
+	animation: textShine 60s linear infinite alternate;
+}
 
 .clipboard {
 	--clipboard-animation: textShine 25s linear infinite alternate;
@@ -46,10 +51,10 @@
 }
 @keyframes textShineReverse {
 	0% {
-		background-position: 250% 50%;
+		background-position: 230% 50%;
 	}
 	100% {
-		background-position: -310% 50%;
+		background-position: -330% 50%;
 	}
 }
 
