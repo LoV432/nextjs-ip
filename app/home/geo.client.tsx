@@ -12,8 +12,8 @@ export default function Geo() {
 		latitude: 0
 	});
 	const [location, setLocation] = useState({
-		country: '',
-		city: ''
+		country: 'Unknown',
+		city: 'Unknown'
 	});
 	useEffect(() => {
 		(async () => {
