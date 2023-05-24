@@ -37,7 +37,7 @@ export default function Geo() {
 				<Ip ip={ip} />
 			</section>
 			<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900 text-white">
-				<div className="min-h-1/2 flex h-fit w-full flex-col items-center gap-11 pb-10">
+				<div className="min-h-1/2 flex h-fit w-full flex-col items-center gap-0 pb-10">
 					<Location location={location} />
 					<Map coords={coords} />
 				</div>

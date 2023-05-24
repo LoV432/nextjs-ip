@@ -9,22 +9,22 @@
 	-webkit-text-fill-color: rgb(24 24 27);
 }
 .countryText {
-	background: radial-gradient(circle, rgba(58, 89, 180, 1) 21%, rgba(20, 226, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
+	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	background-size: 250%;
-	animation: textShine 40s linear infinite alternate;
-	-webkit-text-stroke-width: 5px;
+	animation: textShine 50s linear infinite alternate;
+	-webkit-text-stroke-width: 4px;
 	-webkit-text-stroke-color: transparent;
 	-webkit-text-fill-color: rgb(24 24 27);
 }
 .cityText {
-	background: radial-gradient(circle, rgba(58, 89, 180, 1) 21%, rgba(20, 226, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
+	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	background-size: 250%;
-	animation: textShineReverse 40s linear infinite alternate;
-	-webkit-text-stroke-width: 5px;
+	animation: textShineReverse 50s linear infinite alternate;
+	-webkit-text-stroke-width: 4px;
 	-webkit-text-stroke-color: transparent;
 	-webkit-text-fill-color: rgb(24 24 27);
 }
