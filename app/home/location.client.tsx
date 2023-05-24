@@ -5,8 +5,8 @@ export default function Location({ location }: { location: { country: string; ci
 	const city = location.city === 'Unknown' ? '-' : location.city;
 	return (
 		<>
-			<h1 className={`${country === '-' ? '' : style.countryText} text-justify text-6xl font-bold`}>{country}</h1>
-			<h1 className={`${city === '-' ? '' : style.cityText} text-justify text-6xl font-bold`}>{city}</h1>
+			<h1 className={`${country === '-' ? '' : style.countryText} text-justify text-[3.75rem] font-bold`}>{country}</h1>
+			<h1 className={`${city === '-' ? '' : style.cityText} text-justify text-[3.75rem] font-bold`}>{city}</h1>
 		</>
 	);
 }
