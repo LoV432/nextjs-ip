@@ -1,20 +1,7 @@
 'use client';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { GeoResponse } from '../geo/geo';
 
-export default function Map() {
-	const [mapLink, setMapLink] = useState('');
-
-	useEffect(() => {
-		(async () => {
-			const res = await fetch('/geo');
-			const data: GeoResponse = await res.json();
-			const longitude = parseFloat(data.longitude);
-			const latitude = parseFloat(data.latitude);
-			if (longitude && latitude) setMapLink(getMapLink(longitude, latitude));
-		})();
-	}, []);
+export default function Map({ coords }: { coords: { longitude: number; latitude: number } }) {
+	const mapLink = getMapLink(coords.longitude, coords.latitude);
 	return <iframe src={mapLink} className="aspect-square w-80 md:w-1/3 lg:w-1/4" />;
 }
 
