@@ -4,7 +4,9 @@ export default function Map({ coords }: { coords: { longitude: number; latitude:
 	const mapLink = getMapLink(coords.longitude, coords.latitude);
 	return (
 		<div className={`${style.mapBorder} aspect-square w-80 rounded-xl p-[1px] md:w-1/3`}>
-			<iframe src={mapLink} className="h-full w-full rounded-xl border-hidden grayscale invert filter" />
+			<div className="h-full w-full rounded-xl bg-neutral-900">
+				<iframe src={mapLink} className="h-full w-full rounded-xl border-hidden grayscale invert filter" />
+			</div>
 		</div>
 	);
 }
