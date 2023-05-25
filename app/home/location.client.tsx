@@ -18,7 +18,7 @@ export default function Location({ location }: { location: { country: string; ci
 			<h1 id="countryName" style={{ fontSize: textSize }} className={`${country === '-' ? '' : style.countryText} truncate rounded-xl border-b-2 border-solid border-zinc-800 border-opacity-40 px-4 font-bold tracking-widest`}>
 				{country}
 			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.cityText} mb-7 w-fit rounded-xl border-b-2 border-solid border-zinc-800 border-opacity-40 px-4 font-bold tracking-widest`}>
+			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.cityText} mb-7 truncate rounded-xl border-b-2 border-solid border-zinc-800 border-opacity-40 px-4 font-bold tracking-widest`}>
 				{city}
 			</h1>
 		</div>
