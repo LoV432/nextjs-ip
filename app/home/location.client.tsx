@@ -8,7 +8,7 @@ export default function Location({ location }: { location: { country: string; ci
 		if (textContainer.current.scrollWidth > textContainer.current.clientWidth) {
 			setTextSize(textSize - 1);
 		}
-	}, [textSize]);
+	}, [textSize, location.country, location.city]);
 
 	let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 	const country = location.country === 'Unknown' ? '-' : regionNames.of(location.country);
