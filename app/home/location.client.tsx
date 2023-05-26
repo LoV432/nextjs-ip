@@ -2,13 +2,37 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import style from './home.module.css';
 export default function Location({ location }: { location: { country: string; city: string } }) {
 	const [textSize, setTextSize] = useState(60);
+	const [lastResize, setLastResize] = useState('');
+	const [triggerUseEffect, setTriggerUseEffect] = useState(false);
 	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
-
-	useEffect(() => {
+	let debouncer: NodeJS.Timeout;
+	function handleResize() {
+		const maxSize = 60;
 		if (textContainer.current.scrollWidth > textContainer.current.clientWidth) {
 			setTextSize(textSize - 1);
+			setLastResize('minus');
+			return;
 		}
-	}, [textSize, location.country, location.city]);
+		if (textContainer.current.scrollWidth === textContainer.current.clientWidth && lastResize !== 'minus' && textSize < maxSize) {
+			setTextSize(textSize + 1);
+			return;
+		}
+		setLastResize('');
+	}
+	function triggerResize() {
+		clearInterval(debouncer);
+		debouncer = setTimeout(() => {
+			setTriggerUseEffect(!triggerUseEffect);
+		}, 100);
+	}
+
+	useEffect(() => {
+		addEventListener('resize', triggerResize);
+		handleResize();
+		return () => {
+			removeEventListener('resize', triggerResize);
+		};
+	}, [textSize, location.country, location.city, triggerUseEffect]);
 
 	let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 	const country = location.country === 'Unknown' ? '-' : regionNames.of(location.country);
