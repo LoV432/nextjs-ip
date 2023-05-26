@@ -3,3 +3,7 @@ html {
 	scrollbar-width: none;
 	@apply snap-y snap-mandatory;
 }
+
+html::-webkit-scrollbar {
+	display: none;
+}
