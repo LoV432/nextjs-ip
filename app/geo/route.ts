@@ -13,7 +13,7 @@ export type ipInfoResponse = {
 
 export async function GET(req: NextRequest) {
 	const ip = getValueFromHeader(ipHeader, req);
-	const res = await fetch(`https://ipinfo.io/${ipHeader}/json?token=${ipInfoToken}`);
+	const res = await fetch(`https://ipinfo.io/${ip}/json?token=${ipInfoToken}`);
 	const data: ipInfoResponse = await res.json();
 	const country = getValueFromJson(data, 'country');
 	const state = getValueFromJson(data, 'region');
