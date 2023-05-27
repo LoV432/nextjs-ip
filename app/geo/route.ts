@@ -13,25 +13,38 @@ export type ipInfoResponse = {
 
 export async function GET(req: NextRequest) {
 	const ip = getValueFromHeader(ipHeader, req);
-	const res = await fetch(`https://ipinfo.io/${ip}/json?token=${ipInfoToken}`);
-	const data: ipInfoResponse = await res.json();
+	const data = await fetchIpData(ip);
 	const country = getValueFromJson(data, 'country');
 	const state = getValueFromJson(data, 'region');
 	const city = getValueFromJson(data, 'city');
 	const loc = getValueFromJson(data, 'loc');
-	const longitude = loc !== 'Unknown' ? loc.split(',')[1] : 'Unknown';
-	const latitude = loc !== 'Unknown' ? loc.split(',')[0] : 'Unknown';
+	let longitude: string = '-';
+	let latitude: string = '-';
+	if (loc !== '-') {
+		longitude = loc.split(',')[1];
+		latitude = loc.split(',')[0];
+	}
 	const org = getValueFromJson(data, 'org');
-	const isp = org !== 'Unknown' ? org.split(/ (.*)/s)[1] : 'Unknown';
-	const asn = org !== 'Unknown' ? org.split(/ (.*)/s)[0] : 'Unknown';
+	let isp: string = '-';
+	let asn: string = '-';
+	if (org !== '-') {
+		isp = org.split(/ (.*)/s)[1];
+		asn = org.split(/ (.*)/s)[0];
+	}
 	return NextResponse.json({ ip, country, state, city, longitude, latitude, isp, asn });
 }
 
 function getValueFromHeader(header: string, req: NextRequest) {
-	if (header !== '') return req.headers.get(header) || 'Unknown';
-	return 'Unknown';
+	if (header !== '') return req.headers.get(header) || '-';
+	return '-';
 }
 
 function getValueFromJson(json: any, key: string) {
-	return (json[key] as string) || 'Unknown';
+	return (json[key] as string) || '-';
+}
+
+async function fetchIpData(ip: string) {
+	const res = await fetch(`https://ipinfo.io/${ip}/json?token=${ipInfoToken}`);
+	const data: ipInfoResponse = await res.json();
+	return data;
 }
