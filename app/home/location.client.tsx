@@ -45,7 +45,7 @@ export default function Location({ location }: { location: { country: string; ci
 	const isp = location.isp === 'Unknown' ? '-' : location.isp;
 	const asn = location.asn === 'Unknown' ? '-' : location.asn;
 	return (
-		<div className={`flex h-screen w-[calc(100vw-15vw)] flex-col overflow-hidden py-10 md:h-[calc(100vh-15vh)] md:max-w-md`} ref={textContainer}>
+		<div className={`flex h-screen w-[calc(100vw-15vw)] flex-col justify-center overflow-hidden py-10 md:h-[calc(100vh-15vh)] md:max-w-md`} ref={textContainer}>
 			<h1 id="countryName" style={{ fontSize: textSize }} className={`${country === '-' ? '' : style.countryText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
 				{country}
 			</h1>
