@@ -15,8 +15,10 @@ export async function GET(req: NextRequest) {
 	const ip = getValueFromHeader(ipHeader, req);
 	const data = await fetchIpData(ip);
 	const country = getValueFromJson(data, 'country');
-	const state = getValueFromJson(data, 'region');
-	const city = getValueFromJson(data, 'city');
+	let state = getValueFromJson(data, 'region');
+	let city = getValueFromJson(data, 'city');
+	state = state === country ? '-' : state;
+	city = city === country ? '-' : city;
 	const loc = getValueFromJson(data, 'loc');
 	let longitude: string = '-';
 	let latitude: string = '-';
