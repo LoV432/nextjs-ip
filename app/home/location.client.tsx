@@ -51,10 +51,10 @@ export default function Location({ location }: { location: { country: string; ci
 			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.cityText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
 				{city}
 			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.asnText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
+			<h1 style={{ fontSize: textSize }} className={`${asn === '-' ? '' : style.asnText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
 				{asn}
 			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.ispText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
+			<h1 style={{ fontSize: textSize }} className={`${isp === '-' ? '' : style.ispText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
 				{isp}
 			</h1>
 		</div>
