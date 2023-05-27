@@ -45,18 +45,18 @@ export default function IpInfo({ ipInfo }: { ipInfo: { country: string; city: st
 	const isp = ipInfo.isp;
 	return (
 		<div className={`flex h-screen w-[calc(100vw-15vw)] flex-col justify-center overflow-hidden py-10 md:h-[calc(100vh-15vh)] md:max-w-md`} ref={textContainer}>
-			<h1 style={{ fontSize: textSize }} className={`${country === '-' ? '' : style.countryText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
-				{country}
-			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.cityText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
-				{city}
-			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${asn === '-' ? '' : style.asnText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
-				{asn}
-			</h1>
-			<h1 style={{ fontSize: textSize }} className={`${isp === '-' ? '' : style.ispText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
-				{isp}
-			</h1>
+			<GradientText text={country} textSize={textSize} gradientStyle={style.countryText} />
+			<GradientText text={city} textSize={textSize} gradientStyle={style.cityText} />
+			<GradientText text={asn} textSize={textSize} gradientStyle={style.asnText} />
+			<GradientText text={isp} textSize={textSize} gradientStyle={style.ispText} />
 		</div>
+	);
+}
+
+function GradientText({ text, textSize, gradientStyle }: { text: string; textSize: number; gradientStyle: string }) {
+	return (
+		<h1 style={{ fontSize: textSize }} className={`${text === '-' ? '' : gradientStyle} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
+			{text}
+		</h1>
 	);
 }
