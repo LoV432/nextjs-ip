@@ -14,7 +14,9 @@ export type ipInfoResponse = {
 export async function GET(req: NextRequest) {
 	const ip = getValueFromHeader(ipHeader, req);
 	const data = await fetchIpData(ip);
-	const country = getValueFromJson(data, 'country');
+	let country = getValueFromJson(data, 'country');
+	let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+	country = regionNames.of(country) || '-';
 	let state = getValueFromJson(data, 'region');
 	let city = getValueFromJson(data, 'city');
 	state = state === country ? '-' : state;

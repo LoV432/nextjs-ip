@@ -39,8 +39,7 @@ export default function Location({ location }: { location: { country: string; ci
 		};
 	}, [textSize, location.country, location.city, triggerUseEffect]);
 
-	let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
-	const country = location.country === '-' ? '-' : regionNames.of(location.country);
+	const country = location.country;
 	const city = location.city;
 	const asn = location.asn;
 	const isp = location.isp;
