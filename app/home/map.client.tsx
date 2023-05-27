@@ -3,7 +3,7 @@ import style from './home.module.css';
 export default function Map({ coords }: { coords: { longitude: number; latitude: number } }) {
 	const mapLink = getMapLink(coords.longitude, coords.latitude);
 	return (
-		<div className={`${style.mapBorder} aspect-square w-80 rounded-xl p-[1px] max-sm:w-11/12 max-sm:max-w-xs md:w-1/3 md:min-w-[25rem]`}>
+		<div className={`${style.mapBorder} hidden aspect-square min-w-[30rem] self-center rounded-xl p-[1px] lg:block`}>
 			<div className="h-full w-full rounded-xl bg-neutral-900">
 				<iframe src={mapLink} className="h-full w-full rounded-xl border-hidden outline-none grayscale invert filter" />
 			</div>

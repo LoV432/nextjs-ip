@@ -13,7 +13,9 @@ export default function Geo() {
 	});
 	const [location, setLocation] = useState({
 		country: 'Unknown',
-		city: 'Unknown'
+		city: 'Unknown',
+		isp: 'Unknown',
+		asn: 'Unknown'
 	});
 	useEffect(() => {
 		(async () => {
@@ -26,7 +28,9 @@ export default function Geo() {
 			});
 			setLocation({
 				country: data.country,
-				city: data.city
+				city: data.city,
+				isp: data.isp,
+				asn: data.asn
 			});
 		})();
 		return;
@@ -37,9 +41,11 @@ export default function Geo() {
 				<Ip ip={ip} />
 			</section>
 			<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900 text-white">
-				<div className="min-h-1/2 flex h-fit w-full flex-col items-center gap-0 pb-10">
-					<Location location={location} />
-					<Map coords={coords} />
+				<div className="min-h-1/2 grid h-fit w-full grid-cols-1 place-items-center">
+					<div className="flex flex-row gap-20">
+						<Location location={location} />
+						<Map coords={coords} />
+					</div>
 				</div>
 			</section>
 		</>

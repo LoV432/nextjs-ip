@@ -19,9 +19,12 @@ export async function GET(req: NextRequest) {
 	const state = getValueFromJson(data, 'region');
 	const city = getValueFromJson(data, 'city');
 	const loc = getValueFromJson(data, 'loc');
-	const longitude = loc !== 'Unknown' ? loc.split(',')[1] : '';
-	const latitude = loc !== 'Unknown' ? loc.split(',')[0] : '';
-	return NextResponse.json({ ip, country, state, city, longitude, latitude });
+	const longitude = loc !== 'Unknown' ? loc.split(',')[1] : 'Unknown';
+	const latitude = loc !== 'Unknown' ? loc.split(',')[0] : 'Unknown';
+	const org = getValueFromJson(data, 'org');
+	const isp = org !== 'Unknown' ? org.split(/ (.*)/s)[1] : 'Unknown';
+	const asn = org !== 'Unknown' ? org.split(/ (.*)/s)[0] : 'Unknown';
+	return NextResponse.json({ ip, country, state, city, longitude, latitude, isp, asn });
 }
 
 function getValueFromHeader(header: string, req: NextRequest) {

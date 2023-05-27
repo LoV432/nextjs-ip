@@ -28,6 +28,26 @@
 	-webkit-text-stroke-color: transparent;
 	-webkit-text-fill-color: rgb(24 24 27);
 }
+.ispText {
+	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-size: 200%;
+	animation: textShineReverse 50s linear infinite alternate;
+	-webkit-text-stroke-width: 4px;
+	-webkit-text-stroke-color: transparent;
+	-webkit-text-fill-color: rgb(24 24 27);
+}
+.asnText {
+	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-size: 300%;
+	animation: textShine 50s linear infinite alternate;
+	-webkit-text-stroke-width: 4px;
+	-webkit-text-stroke-color: transparent;
+	-webkit-text-fill-color: rgb(24 24 27);
+}
 .mapBorder {
 	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
 	background-size: 300%;

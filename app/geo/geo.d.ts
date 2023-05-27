@@ -6,4 +6,6 @@ export interface GeoResponse {
 	city: string;
 	longitude: string;
 	latitude: string;
+	isp: string;
+	asn: string;
 }
