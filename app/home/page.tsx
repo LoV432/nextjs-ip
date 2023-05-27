@@ -1,4 +1,4 @@
-import Geo from './geo.client';
+import Main from './main.client';
 import './home.css';
 import type { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-	return <Geo />;
+	return <Main />;
 }

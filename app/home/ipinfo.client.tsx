@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import style from './home.module.css';
-export default function Location({ location }: { location: { country: string; city: string; isp: string; asn: string } }) {
+export default function IpInfo({ ipInfo }: { ipInfo: { country: string; city: string; isp: string; asn: string } }) {
 	const [textSize, setTextSize] = useState(40);
 	const [lastResize, setLastResize] = useState('');
 	const [triggerUseEffect, setTriggerUseEffect] = useState(false);
@@ -37,15 +37,15 @@ export default function Location({ location }: { location: { country: string; ci
 		return () => {
 			removeEventListener('resize', triggerResize);
 		};
-	}, [textSize, location.country, location.city, triggerUseEffect]);
+	}, [textSize, ipInfo.country, ipInfo.city, triggerUseEffect]);
 
-	const country = location.country;
-	const city = location.city;
-	const asn = location.asn;
-	const isp = location.isp;
+	const country = ipInfo.country;
+	const city = ipInfo.city;
+	const asn = ipInfo.asn;
+	const isp = ipInfo.isp;
 	return (
 		<div className={`flex h-screen w-[calc(100vw-15vw)] flex-col justify-center overflow-hidden py-10 md:h-[calc(100vh-15vh)] md:max-w-md`} ref={textContainer}>
-			<h1 id="countryName" style={{ fontSize: textSize }} className={`${country === '-' ? '' : style.countryText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
+			<h1 style={{ fontSize: textSize }} className={`${country === '-' ? '' : style.countryText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
 				{country}
 			</h1>
 			<h1 style={{ fontSize: textSize }} className={`${city === '-' ? '' : style.cityText} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>

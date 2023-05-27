@@ -1,4 +1,4 @@
-export interface GeoResponse {
+export interface AllResponse {
 	ip: string;
 	continent: string;
 	country: string;
