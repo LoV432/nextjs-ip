@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 	const data = await fetchIpData(ip);
 	let country = getValueFromJson(data, 'country');
 	let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
-	country = regionNames.of(country) || '-';
+	country = country === '-' ? '-' : (regionNames.of(country) as string);
 	let state = getValueFromJson(data, 'region');
 	let city = getValueFromJson(data, 'city');
 	state = state === country ? '-' : state;
