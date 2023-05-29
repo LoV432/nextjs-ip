@@ -10,6 +10,6 @@ Just a basic app to get basic info like IP, Geo location and Stuff
 This will return your IP in `text/plain;charset=UTF-8`
 
 ### Get Geo
-`curl -L nextjs-ip.vercel.app/geo`
+`curl -L nextjs-ip.vercel.app/all`
 
 This will return your Geo info in `application/json`
