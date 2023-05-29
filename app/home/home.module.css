@@ -8,6 +8,9 @@
 	-webkit-text-stroke-color: transparent;
 	-webkit-text-fill-color: rgb(24 24 27);
 }
+.scrollDownAnimation {
+	animation: bounce 1s ease-in-out infinite;
+}
 .countryText {
 	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
 	-webkit-background-clip: text;
@@ -102,5 +105,17 @@
 	}
 	100% {
 		transform: scale(0);
+	}
+}
+
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
 	}
 }
