@@ -9,7 +9,10 @@
 	-webkit-text-fill-color: rgb(24 24 27);
 }
 .scrollDownAnimation {
-	animation: bounce 1s ease-in-out infinite;
+	background: radial-gradient(circle, rgba(219, 29, 112, 1) 0%, rgba(62, 128, 207, 1) 100%);
+	animation: bounce 1s ease-in-out infinite, textShineReverse 30s linear infinite alternate;
+	background-size: 250%;
+	clip-path: url(#arrowDown);
 }
 .countryText {
 	background: radial-gradient(circle, rgba(180, 58, 58, 1) 21%, rgba(94, 20, 255, 1) 58%, rgba(222, 69, 252, 1) 100%);
