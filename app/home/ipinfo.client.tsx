@@ -1,43 +1,9 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useRef } from 'react';
+import useResizeHelper from './useResizeHelper';
 import style from './home.module.css';
 export default function IpInfo({ ipInfo }: { ipInfo: { country: string; city: string; isp: string; asn: string } }) {
-	const [textSize, setTextSize] = useState(40);
-	const [lastResize, setLastResize] = useState('');
-	const [triggerUseEffect, setTriggerUseEffect] = useState(false);
 	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
-	let debouncer: NodeJS.Timeout;
-	function handleResize() {
-		const maxSize = 80;
-		const scrollWidth = textContainer.current.scrollWidth;
-		const clientWidth = textContainer.current.clientWidth;
-		const scrollHeight = textContainer.current.scrollHeight;
-		const clientHeight = textContainer.current.clientHeight;
-		if (scrollWidth > clientWidth || scrollHeight > clientHeight) {
-			setTextSize(textSize - 1);
-			setLastResize('minus');
-			return;
-		}
-		if ((scrollWidth === clientWidth || scrollHeight === clientHeight) && lastResize !== 'minus' && textSize < maxSize) {
-			setTextSize(textSize + 1);
-			return;
-		}
-
-		setLastResize('');
-	}
-	function triggerResize() {
-		clearInterval(debouncer);
-		debouncer = setTimeout(() => {
-			setTriggerUseEffect(!triggerUseEffect);
-		}, 100);
-	}
-
-	useEffect(() => {
-		addEventListener('resize', triggerResize);
-		handleResize();
-		return () => {
-			removeEventListener('resize', triggerResize);
-		};
-	}, [textSize, ipInfo.country, ipInfo.city, triggerUseEffect]);
+	const textSize = useResizeHelper(textContainer, ipInfo.country, 80);
 
 	const country = ipInfo.country;
 	const city = ipInfo.city;

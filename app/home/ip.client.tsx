@@ -1,11 +1,13 @@
 'use client';
 import style from './home.module.css';
-import { useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import useResizeHelper from './useResizeHelper';
 
 export default function Ip({ ip }: { ip: string }) {
 	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
-	const [isipv6, setIsipv6] = useState(false);
 	const [finalIp, setFinalIp] = useState(ip);
+	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
+	const textSize = useResizeHelper(textContainer, finalIp, 200);
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
 		if (clipboardAnimation === style.clipboardAnimation) return; // Dont re-run animation if its alrdy running
@@ -25,7 +27,6 @@ export default function Ip({ ip }: { ip: string }) {
 			const urlParams = new URLSearchParams(window.location.search);
 			const ipInSearchParams = urlParams.get('ip');
 			if (ipInSearchParams !== null) {
-				setIsipv6(ipInSearchParams.includes(':') ? true : false);
 				setFinalIp(ipInSearchParams);
 				window.history.pushState({}, '', '/home'); // Remove ip from URL
 			} else {
@@ -38,9 +39,11 @@ export default function Ip({ ip }: { ip: string }) {
 	return (
 		<>
 			<div className="flex flex-col items-center gap-20">
-				<h1 onClick={copyIp} className={`${isipv6 ? 'text-[7vw]' : 'text-[11vw] md:text-[9vw]'} ${style.homeText} select-none p-2 text-justify font-bold text-white hover:cursor-pointer`}>
-					{finalIp}
-				</h1>
+				<div ref={textContainer} className="w-[calc(100vw-15vw)] overflow-hidden">
+					<h1 style={{ fontSize: textSize }} onClick={copyIp} className={`${style.homeText} select-none p-2 text-center font-bold text-white hover:cursor-pointer`}>
+						{finalIp}
+					</h1>
+				</div>
 				<div onClick={scrollToBottom} className="h-16 w-16 hover:cursor-pointer">
 					<div className={`${style.scrollDownAnimation} ${finalIp === 'Detecting...' || finalIp === '' ? 'hidden' : ''} h-16 w-16`}></div>
 				</div>
