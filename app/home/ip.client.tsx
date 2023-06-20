@@ -3,11 +3,11 @@ import style from './home.module.css';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import useResizeHelper from './useResizeHelper';
 
-export default function Ip({ ip }: { ip: string }) {
+export default function Ip({ ipFromParent }: { ipFromParent: string }) {
 	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
-	const [finalIp, setFinalIp] = useState(ip);
+	const [ip, setIp] = useState(ipFromParent);
 	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
-	const textSize = useResizeHelper(textContainer, finalIp, 200);
+	const textSize = useResizeHelper(textContainer, ip, 200);
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
 		if (clipboardAnimation === style.clipboardAnimation) return; // Dont re-run animation if its alrdy running
@@ -27,25 +27,25 @@ export default function Ip({ ip }: { ip: string }) {
 			const urlParams = new URLSearchParams(window.location.search);
 			const ipInSearchParams = urlParams.get('ip');
 			if (ipInSearchParams !== null) {
-				setFinalIp(ipInSearchParams);
+				setIp(ipInSearchParams);
 				window.history.pushState({}, '', '/home'); // Remove ip from URL
 			} else {
-				setFinalIp('Detecting...');
+				setIp('Detecting...');
 			}
 		} else {
-			setFinalIp(ip);
+			setIp(ipFromParent);
 		}
-	}, [ip]);
+	}, [ipFromParent]);
 	return (
 		<>
 			<div className="flex flex-col items-center gap-20">
 				<div ref={textContainer} className="w-[calc(100vw-15vw)] overflow-hidden">
 					<h1 style={{ fontSize: textSize }} onClick={copyIp} className={`${style.homeText} select-none p-2 text-center font-bold text-white hover:cursor-pointer`}>
-						{finalIp}
+						{ip}
 					</h1>
 				</div>
 				<div onClick={scrollToBottom} className="h-16 w-16 hover:cursor-pointer">
-					<div className={`${style.scrollDownAnimation} ${finalIp === 'Detecting...' || finalIp === '' ? 'hidden' : ''} h-16 w-16`}></div>
+					<div className={`${style.scrollDownAnimation} ${ip === 'Detecting...' || ip === '' ? 'hidden' : ''} h-16 w-16`}></div>
 				</div>
 			</div>
 			<div className={`${style.clipboard} fixed bottom-14 rounded-lg p-3 text-lg font-semibold text-black ${clipboardAnimation}`}>Copied to clipboard!</div>

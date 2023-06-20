@@ -38,7 +38,7 @@ export default function Geo() {
 	return (
 		<>
 			<section className="grid h-screen w-full snap-center place-items-center bg-zinc-900">
-				<Ip ip={ip} />
+				<Ip ipFromParent={ip} />
 			</section>
 			<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900 text-white">
 				<div className="min-h-1/2 grid h-fit w-full grid-cols-1 place-items-center">
