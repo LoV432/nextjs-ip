@@ -2,19 +2,17 @@
 import style from './home.module.css';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import useResizeHelper from './useResizeHelper';
+import { clipboardState } from './clipboardAnimation';
+import { useRecoilState } from 'recoil';
 
 export default function Ip({ ipFromParent }: { ipFromParent: string }) {
-	const [clipboardAnimation, setClipboardAnimation] = useState(style.clipboardHidden);
 	const [ip, setIp] = useState(ipFromParent);
 	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
 	const textSize = useResizeHelper(textContainer, ip, 200);
+	const [clipboardAnimation, triggerClipboardAnimation] = useRecoilState(clipboardState);
 	function copyIp() {
 		navigator.clipboard.writeText(ip);
-		if (clipboardAnimation === style.clipboardAnimation) return; // Dont re-run animation if its alrdy running
-		setClipboardAnimation(style.clipboardAnimation);
-		setTimeout(() => {
-			setClipboardAnimation(style.clipboardHidden);
-		}, 2350);
+		triggerClipboardAnimation(!clipboardAnimation);
 	}
 	function scrollToBottom() {
 		window.scrollTo({
@@ -48,7 +46,6 @@ export default function Ip({ ipFromParent }: { ipFromParent: string }) {
 					<div className={`${style.scrollDownAnimation} ${ip === 'Detecting...' || ip === '' ? 'hidden' : ''} h-16 w-16`}></div>
 				</div>
 			</div>
-			<div className={`${style.clipboard} fixed bottom-14 rounded-lg p-3 text-lg font-semibold text-black ${clipboardAnimation}`}>Copied to clipboard!</div>
 			<svg className="absolute h-0 w-0" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
 				<g>
 					<clipPath id="arrowDown">

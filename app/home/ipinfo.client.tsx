@@ -1,6 +1,8 @@
 import { MutableRefObject, useRef } from 'react';
 import useResizeHelper from './useResizeHelper';
 import style from './home.module.css';
+import { clipboardState } from './clipboardAnimation';
+import { useRecoilState } from 'recoil';
 export default function IpInfo({ ipInfo }: { ipInfo: { country: string; city: string; isp: string; asn: string } }) {
 	const textContainer = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
 	const textSize = useResizeHelper(textContainer, ipInfo.country, 80);
@@ -20,8 +22,13 @@ export default function IpInfo({ ipInfo }: { ipInfo: { country: string; city: st
 }
 
 function GradientText({ text, textSize, gradientStyle }: { text: string; textSize: number; gradientStyle: string }) {
+	const [clipboardAnimation, triggerClipboardAnimation] = useRecoilState(clipboardState);
+	function copyToClipboard(text: string) {
+		navigator.clipboard.writeText(text);
+		triggerClipboardAnimation(!clipboardAnimation);
+	}
 	return (
-		<h1 style={{ fontSize: textSize }} className={`${text === '-' ? '' : gradientStyle} mb-7 rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest`}>
+		<h1 onClick={() => copyToClipboard(text)} style={{ fontSize: textSize }} className={`${text === '-' ? '' : gradientStyle} mb-7 select-none rounded-xl border-y-2 border-solid border-zinc-800 border-opacity-40 pb-2 pt-1 text-center tracking-widest hover:cursor-pointer`}>
 			{text}
 		</h1>
 	);

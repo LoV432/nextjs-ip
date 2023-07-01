@@ -4,6 +4,8 @@ import Map from './map.client';
 import IpInfo from './ipinfo.client';
 import { useEffect, useState } from 'react';
 import { AllResponse } from '../all/all';
+import ClipboardAnimation from './clipboardAnimation';
+import { RecoilRoot } from 'recoil';
 
 export default function Geo() {
 	const [ip, setIp] = useState('');
@@ -37,17 +39,20 @@ export default function Geo() {
 	}, []);
 	return (
 		<>
-			<section className="grid h-screen w-full snap-center place-items-center bg-zinc-900">
-				<Ip ipFromParent={ip} />
-			</section>
-			<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900 text-white">
-				<div className="min-h-1/2 grid h-fit w-full grid-cols-1 place-items-center">
-					<div className="flex flex-row gap-20">
-						<IpInfo ipInfo={ipInfo} />
-						<Map coords={coords} />
+			<RecoilRoot>
+				<section className="grid h-screen w-full snap-center place-items-center bg-zinc-900">
+					<Ip ipFromParent={ip} />
+				</section>
+				<section className="grid h-screen w-full snap-center place-items-center bg-neutral-900 text-white">
+					<div className="min-h-1/2 grid h-fit w-full grid-cols-1 place-items-center">
+						<div className="flex flex-row gap-20">
+							<IpInfo ipInfo={ipInfo} />
+							<Map coords={coords} />
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+				<ClipboardAnimation />
+			</RecoilRoot>
 		</>
 	);
 }
