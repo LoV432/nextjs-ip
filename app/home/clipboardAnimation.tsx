@@ -24,7 +24,7 @@ export default function clipboardAnimation() {
 
 	return (
 		<div className="flex flex-col items-center">
-			<div className={`${style.clipboard} fixed bottom-14 rounded-lg p-3 text-lg font-semibold text-black ${clipboardAnimation}`}>Copied to clipboard!</div>;
+			<div className={`${style.clipboard} fixed bottom-14 rounded-lg p-3 text-lg font-semibold text-black ${clipboardAnimation}`}>Copied to clipboard!</div>
 		</div>
 	);
 }
