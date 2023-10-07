@@ -35,7 +35,14 @@ export async function GET(req: NextRequest) {
 		isp = org.split(/ (.*)/s)[1];
 		asn = org.split(/ (.*)/s)[0];
 	}
-	return NextResponse.json({ ip, country, state, city, longitude, latitude, isp, asn });
+	return NextResponse.json(
+		{ ip, country, state, city, longitude, latitude, isp, asn },
+		{
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		}
+	);
 }
 
 function getValueFromHeader(header: string, req: NextRequest) {
